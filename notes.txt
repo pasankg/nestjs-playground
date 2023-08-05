@@ -1,0 +1,150 @@
+React
+
+JSX is a syntax extension for JavaScript
+
+Browsers don’t understand JSX out of the box, 
+
+It need a JavaScript compiler, such as a Babel, to transform JSX code into regular JavaScript.
+
+imperative programming: is like giving a chef step-by-step instructions on how to make a pizza. 
+
+Declarative programming: is like ordering a pizza without being concerned about the steps it takes to make the pizza. 
+
+Why do you need to compile your React code?
+- React uses JSX which needs to be compiled into JavaScript. 
+
+Arrow Functions 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+Essential JavaScript for React: https://nextjs.org/learn/foundations/from-javascript-to-react/essential-javascript-react
+Functions and Arrow Functions
+Objects
+Arrays and array methods
+Destructuring
+Template literals
+Ternary Operators
+ES Modules and Import / Export Syntax
+
+In React, data flows down the component tree. This is referred to as one-way data flow. 
+
+How would you nest a Header component inside a Layout component in React?
+<Layout><Header /></Layout> 
+
+React Core Concepts
+Components
+In React, components are functions.
+A component is a function that returns UI elements
+React components should be capitalized to distinguish them from plain HTML and JavaScript.
+Use React components the same way you’d use regular HTML tags, with angle brackets <>.
+
+Props
+HTML elements have attributes, In the same way, you can pass pieces of information as properties to React components. These are called props.
+// An object property with dot notation.
+function Header(props) {
+  return <h1>{props.title}</h1>;
+}
+// A template literal:
+function Header({ title }) {
+  return <h1>{`Cool ${title}`}</h1>;
+}
+// The returned value of a function.
+function createTitle(title) {
+  if (title) {
+    return title;
+  } else {
+    return 'Default title';
+  }
+}
+
+function Header({ title }) {
+  return <h1>{createTitle(title)}</h1>;
+}
+// Using ternary operators.
+function Header({ title }) {
+  return <h1>{title ? title : 'Default Title'}</h1>;
+}
+State
+State; can be passed from parent to child components as props.
+In React, event names are camelCased.
+React has a set of functions called hooks. 
+Hooks allow you to add additional logic such as state to your components.
+You can think of state as any information in your UI that changes over time
+function HomePage() {
+  const [likes, setLikes] = React.useState(0);
+
+  // ...
+}
+The first item in the array is the state value
+The second item in the array is a function to update the value
+It's common to prefix it with set followed by the name of the state variable you’re updating
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={handleClick}>Likes ({likes})</button>
+    </div>
+  );
+}
+Unlike props which are passed to components as the first function parameter,
+ the state is initiated and stored within a component. 
+You can pass the state information to children components as props, 
+but the logic for updating the state should be kept within the component where state was initially created.
+
+What is the difference between props and state?
+Props is read-only information that's passed to components. State is information that can change over time, usually triggered by user interaction. 
+
+What is the difference between compiling and bundling in web development?
+Compiling is transforming code into something parsable by browsers. Bundling is resolving your applications dependency graph and reducing the number of files. 
+
+Code-splitting is the process of splitting the application’s bundle into smaller chunks required by each entry point. The goal is to improve the application's initial load time by only loading the code required to run that page.
+
+Build time (or build step) is the name given to a series of steps that prepare your application code for production.
+
+Runtime (or request time) refers to the period of time when your application runs in response to a user’s request, after your application has been built and deployed.
+
+Next.js pre-renders every page by default. 
+Pre-rendering means the HTML is generated in advance, on a server, instead of having it all done by JavaScript on the user's device.
+
+Hydration: On the client, the HTML is used to show a fast non-interactive page, 
+while React uses the JSON data and JavaScript instructions to make components interactive
+
+The Edge
+Similar to CDNs, Edge servers are distributed to multiple locations around the world. 
+But unlike CDNs, which store static content, some Edge servers can run small snippets of code.
+This means both caching and code execution can be done at the Edge closer to the user.
+
+To use CSS Modules, the CSS file name must end with .module.css.
+To use a class (i.e. container) inside components/layout.js, you need to:
+Import the CSS file and assign a name to it, like styles
+Use styles.container as the className
+
+To load global CSS to your application, create a file called pages/_app.js 
+The default export of _app.js is a top-level React component that wraps all the pages in your application. 
+You can use this component to keep state when navigating between pages, or to add global styles.
+In Next.js, you can add global CSS files by importing them from pages/_app.js. You cannot import global CSS anywhere else.
+The Component prop is the active page
+pageProps is an object with the initial props that were preloaded
+
+import type { AppProps } from 'next/app'
+ 
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
+
+
+
+
+
+
+
+
+
+
+
